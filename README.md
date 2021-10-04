@@ -1,5 +1,6 @@
 # Review_Material
 此為提供研究所甄試之作品集
+
 ## Java作品
 裡面為我曾經完成的Java作品，每個檔案夾內都有需求文件，點開後即可理解該專案之內容和需求。
 
@@ -10,5 +11,9 @@
 - MLP (https://drive.google.com/drive/folders/1hm9IQ7jEqND1_dhR-neuJkPsvtgss1jt?usp=sharing)
 - Hopfield (https://drive.google.com/drive/folders/173WdRhP1cXeBi-TxwSl0L4-jZVhd1Zb9?usp=sharing)
 
-## 簡單的買賣保險網站
-  https://github.com/vony123tony123/ncu_mis_sa
+## SA_期末專案
+ 曾和組員一同建立一個保險買賣網站
+ 
+## 畢業專題
+生活中有多少稍縱即逝的點子，在捕捉前就消失無蹤？為了解決這一創作者普遍存在的問題，我們開發面相新手創作者的應用程式EzRecord，提供簡單方便的功能使創作過程變得更輕鬆，可在合適的環境隨時記錄腦海中浮現的旋律。 
+  https://github.com/vony123tony123/MusicApp_FinalProject
