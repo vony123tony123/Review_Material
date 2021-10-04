@@ -10,4 +10,5 @@
 - MLP (https://drive.google.com/drive/folders/1hm9IQ7jEqND1_dhR-neuJkPsvtgss1jt?usp=sharing)
 - Hopfield (https://drive.google.com/drive/folders/173WdRhP1cXeBi-TxwSl0L4-jZVhd1Zb9?usp=sharing)
 
-
+## 簡單的買賣保險網站
+  https://github.com/vony123tony123/ncu_mis_sa
