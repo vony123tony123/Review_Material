@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="D:/BackUpToGoogle/Program/java_workspace/mysql-connector-java-5.1.49-bin.jar"/>
+	<classpathentry kind="lib" path="D:/BackUpToGoogle/Program/java_workspace/Java 作業/TiroFinaleQ/2020進JA期末考/Java期末考附件/Q1/javax.mail.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
