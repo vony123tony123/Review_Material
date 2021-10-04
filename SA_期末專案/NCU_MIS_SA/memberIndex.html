@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>管理員中心</title>
+  <!-- Bootstrap core CSS -->
+  <link href="statics/css/bootstrap.min.css" rel="stylesheet">
+  <link href="statics/css/insurance.css" rel="stylesheet">
+  <link href="statics/icon/insurance.ico" type="image/x-icon" rel="shortcut icon">
+  <link href="statics/icon/insurance.ico" type="image/x-icon" rel="icon">
+
+
+  <script src="statics/js/jquery-3.4.1.min.js"></script>
+
+</head>
+
+<body>
+
+<div  id="manager_bar">
+		<div
+			class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 border-bottom shadow-sm"
+			style="background-color: rgb(214, 236, 243);  font-family: Merriweather;" >
+			<a class="mr-1" href="home.html">
+			<img src="./statics/img/insurance.png" style="width: 40px; height: 40px;"></a> 
+			<h5 class="my-0 mr-md-auto font-weight-normal"> 西阿哇些人壽</h5>
+			<nav class="my-2 my-md-0 mr-md-3">
+				<a  class="p-2 text-dark" href="memberIndex.html">會員管理</a> 
+				<a	class="p-2 text-dark" href="insuranceIndex.html">保險管理</a>
+				<a	class="p-2 text-dark" href="insurancePolicyIndex.html">保單管理</a>
+				<a class="btn btn-outline-primary" href="login.html">登出</a>
+			</nav>
+		</div>
+	</div>
+    
+    <div id="container">
+        
+		<div class="col-md-12 order-md-1">
+		<h2 class="mb-4">會員中心</h2>
+		<hr class="mb-4">
+            
+            
+            <form id="form" accept-charset="utf-8">
+
+				<div class="row mx-auto mb-2 submit">
+					<input class="btn btn-outline-primary" type="button" value="新增會員"
+						onclick="location.href='memberRegister.html'">
+				</div>
+
+			</form>
+            
+            <!-- 提示 -->
+            <div id="flashMessage" class="message" 
+            style="display: none;"></div>
+            
+            <div style="overflow-x: auto;">
+            <!-- 表格：會員資料表：資料種類 -->
+            <table id="table" class="table" style="white-space: nowrap;">
+                <thead>
+                    <tr>
+                        <th scope="col">身份證字號</th>	<!-- 01. -->
+                        <th scope="col">姓名</th>		<!-- 02. -->
+                        <th scope="col">密碼</th>
+                        <th scope="col">電郵</th>		<!-- 03.   ><	 04.是密碼 		 -->
+                        <th scope="col">銀行帳號</th>	<!-- 05. -->
+                        <th scope="col">生日</th>		<!-- 06. -->
+                        <th scope="col">性別</th>		<!-- 07. -->
+                        <th scope="col">身高</th>		<!-- 08. -->
+                        <th scope="col">體重</th>		<!-- 09. -->
+                        <th scope="col">疾病</th>		<!-- 10. -->
+                        <th scope="col">電話</th>		<!-- 11. -->
+                        <th scope="col">地址</th>		<!-- 12. -->
+                        <th scope="col">管理員</th>		<!-- 13.   ><	 14.是時間 		 -->
+                        <th scope="col">功能</th>			<!-- 			功能：編輯、刪除	 -->
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+            </div>
+            
+            <!--程式：
+            	請求會員資料索取
+            	更新會員資料表
+            	刪除會員資料
+            -->
+            <script type="text/javascript">
+				// FUNCTIONS
+                // 發出POST的GET請求取得所有會員列表
+                function getAllMember() {
+                    $.ajax({
+                            type: "GET",
+                            url: "api/member.do",
+                            crossDomain: true,
+                            cache: false,
+                            dataType: 'json',
+                            timeout: 5000,
+                            success: function (response) {
+                                if(response.status == 200){
+                                    updateTable(response.response.data);
+                                }
+                                console.log(response);
+                            },
+                            error: function () {
+                                alert("無法連線到伺服器！");
+                            }
+                    });
+                }
+                // 把會員資料全部丟上去！！！
+                $(document).ready(
+                	function() {
+                    	getAllMember();
+                	}
+                )
+                
+                
+                // 更新會員列表表格
+                function updateTable(data) {
+                    $("#table > tbody").empty();
+                    var table_html = '';
+                    $.each(
+                    		data, function(index, value) {
+                    	table_html += '<tr>					<!--輸出一列的會員資訊-->';
+                        
+                        
+                        table_html += '<td '
+                        table_html += 'scope="row">'+ value['id'] + 	  '</td>';
+                        table_html += '<td>' 		+ value['name'] + 		  '</td>';
+                        table_html += '<td>' 		+ value['password'] + 		  '</td>';
+                        table_html += '<td>' 		+ value['email'] + 		  '</td>';
+                        table_html += '<td>' 		+ value['bank_account'] + '</td>';
+                        table_html += '<td>' 		+ value['birthday'] + 	  '</td>';
+                        table_html += '<td>' 		+ value['gender'] + 	  '</td>';
+                        table_html += '<td>' 		+ value['height'] + 	  '</td>';
+                        table_html += '<td>' 		+ value['weight'] + 	  '</td>';
+                        table_html += '<td>' 		+ value['disease_id'] +   '</td>';
+                        table_html += '<td>' 		+ value['phone_number'] + '</td>';
+                        table_html += '<td>' 		+ value['address'] + 	  '</td>';
+                        table_html += '<td>' 		+ value['manager'] + 	  '</td>';
+                        table_html += '<td>				<!--以下是編輯與刪除的部分-->';
+                       
+                        table_html += '<a href="memberEditor.html';
+                        table_html += '?ID_number=' 		+ value['id'] + 	 '">編輯</a> | ';
+                        table_html += '<a href="javascript: deleteMember(\''+ value['id'] +'\')">刪除</a>';
+                        table_html += '</td>';
+                        
+                        
+                        table_html += '</tr>';
+                    }
+                    )
+                    
+                    $("#table > tbody").append(table_html);
+                }
+                
+                
+                // 刪除會員資料
+                function deleteMember(id) {
+                    var check = window.confirm("確認刪除會員？");
+                    if (check == true) {
+                        console.log("You pressed OK!");
+                        
+                        var request = {'id': id};
+                        var data_string = JSON.stringify(request);
+                        
+                        $.ajax({
+                            type: "DELETE",
+                            url: "api/member.do",
+                            crossDomain: true,
+                            data: data_string,
+                            cache: false,
+                            dataType: 'json',
+                            timeout: 5000,
+                            success: function (response) {
+                                if(response.status == 200){
+                                    $("#flashMessage").html("成功! 已經成功刪除會員...");
+                                    $("#flashMessage").show();
+                                    getAllMember();
+                                }
+                                console.log(response);
+                            },
+                            error: function () {
+                                alert("無法連線到伺服器！");
+                            }
+                        });
+                    }
+                    else {
+                        console.log("You pressed Cancel!");
+                    }
+                }
+            </script>
+            
+            
+        </div>
+        
+    </div>
+    
+</body>
+
+
+</html>
